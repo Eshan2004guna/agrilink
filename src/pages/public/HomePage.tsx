@@ -13,7 +13,11 @@ import {
   Check,
   ShieldCheck,
   Globe2,
-  Store
+  Store,
+  Award,
+  Star,
+  MapPin,
+  Quote
 } from 'lucide-react';
 import { Button } from '../../components/common/Button';
 import { ProductCard } from '../../components/marketplace/ProductCard';
@@ -57,7 +61,7 @@ export const HomePage: React.FC = () => {
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
               Connecting{' '}
-              <span className="text-emerald-700 underline decoration-emerald-300 decoration-wavy decoration-2 underline-offset-4">
+              <span className="text-emerald-700">
                 Farmers to Buyers
               </span>
               .<br className="hidden sm:inline" /> Growing Agriculture Together.
@@ -341,6 +345,94 @@ export const HomePage: React.FC = () => {
             ))}
           </div>
         )}
+      </section>
+
+      {/* Local Farmer Spotlight / Story Card Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-gradient-to-br from-emerald-900 via-emerald-950 to-slate-900 rounded-3xl p-6 sm:p-10 md:p-12 text-white shadow-xl relative overflow-hidden border border-emerald-800/80">
+          {/* Decorative Glow Blob */}
+          <div className="absolute -top-24 -right-24 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            {/* Left Image Frame */}
+            <div className="lg:col-span-5 relative flex justify-center">
+              <div className="relative w-full max-w-sm sm:max-w-md">
+                <div className="relative rounded-2xl overflow-hidden border-2 border-emerald-600/40 shadow-2xl h-80 sm:h-96">
+                  <img
+                    src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&q=80&w=800"
+                    alt="Kamal Perera - Farmer of the Week"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-transparent" />
+                  
+                  {/* Verified Badge */}
+                  <div className="absolute top-4 left-4 bg-emerald-600/90 backdrop-blur-md text-white text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-md border border-emerald-400/30">
+                    <ShieldCheck className="w-4 h-4 text-emerald-200" />
+                    <span>Verified AgriLink Farmer</span>
+                  </div>
+
+                  {/* Rating Tag */}
+                  <div className="absolute bottom-4 left-4 right-4 bg-slate-900/90 backdrop-blur-md p-3.5 rounded-xl border border-slate-700/80 flex items-center justify-between text-xs">
+                    <div>
+                      <div className="font-bold text-white text-sm">Kamal Perera</div>
+                      <div className="text-emerald-300 text-xs flex items-center gap-1">
+                        <MapPin className="w-3.5 h-3.5" /> Nuwara Eliya District
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1 bg-amber-400/20 text-amber-300 px-2.5 py-1 rounded-lg border border-amber-400/30 font-bold">
+                      <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                      <span>4.9 / 5.0</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Story Content */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-800/80 text-emerald-300 text-xs font-bold uppercase tracking-wider border border-emerald-700/80">
+                <Award className="w-4 h-4 text-amber-400" />
+                <span>Farmer Spotlight of the Week</span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
+                "Direct selling gave my farm financial stability and a fair income."
+              </h2>
+
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed italic border-l-4 border-emerald-500 pl-4 py-1">
+                "By listing my carrot and leek harvests directly on AgriLink, I connect straight with buyers in Colombo and Kandy without losing half my profits to middlemen. It has transformed how our family operates our 4.5-acre land."
+              </p>
+
+              {/* Farmer Quick Specs */}
+              <div className="grid grid-cols-3 gap-4 pt-2 border-t border-emerald-800/80 text-left">
+                <div>
+                  <div className="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Location</div>
+                  <div className="text-xs sm:text-sm font-bold text-white mt-0.5">Nuwara Eliya</div>
+                </div>
+                <div>
+                  <div className="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Land Dimension</div>
+                  <div className="text-xs sm:text-sm font-bold text-emerald-400 mt-0.5">4.5 Acres</div>
+                </div>
+                <div>
+                  <div className="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Main Crops</div>
+                  <div className="text-xs sm:text-sm font-bold text-white mt-0.5">Carrots & Leeks</div>
+                </div>
+              </div>
+
+              {/* Action Button */}
+              <div className="pt-2">
+                <Button
+                  variant="primary"
+                  onClick={() => navigate('/marketplace')}
+                  rightIcon={<ArrowRight className="w-4 h-4" />}
+                  className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 shadow-md shadow-emerald-950/40"
+                >
+                  View Kamal's Harvest Produce
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Why Choose AgriLink Section */}
