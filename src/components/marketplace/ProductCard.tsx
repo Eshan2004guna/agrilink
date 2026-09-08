@@ -45,47 +45,47 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
 
       {/* Card Content */}
-      <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
-        <div>
-          <div className="flex items-center gap-1.5 text-slate-500 text-xs font-medium mb-1">
+      <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+        <div className="space-y-1.5">
+          <div className="flex items-center gap-1.5 text-slate-500 text-xs font-medium">
             <MapPin className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
             <span className="truncate">{product.district}</span>
           </div>
 
           <Link to={`/marketplace/${product.id}`} className="block group-hover:text-emerald-700 transition-colors">
-            <h3 className="font-bold text-slate-900 line-clamp-1 text-base">{product.name}</h3>
+            <h3 className="font-bold text-slate-900 line-clamp-1 text-base leading-snug">{product.name}</h3>
           </Link>
 
-          <p className="text-xs text-slate-500 line-clamp-2 mt-1 leading-relaxed">
+          <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed h-8">
             {product.description}
           </p>
         </div>
 
         {/* Farmer Info */}
-        <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
+        <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
           <div className="flex items-center gap-1.5 truncate">
-            <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-[10px]">
+            <div className="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-[10px] shrink-0">
               {product.farmerName.charAt(0)}
             </div>
             <span className="truncate font-medium">{product.farmerName}</span>
           </div>
-          <span className="text-slate-400 font-normal shrink-0">
-            Stock: <strong className="text-slate-700">{product.availableQuantity} {product.unit}</strong>
+          <span className="text-slate-400 font-normal shrink-0 text-[11px]">
+            Stock: <strong className="text-slate-700 font-semibold">{product.availableQuantity} {product.unit}</strong>
           </span>
         </div>
 
         {/* Price & Action */}
-        <div className="pt-2 flex items-center justify-between gap-2">
+        <div className="pt-2 flex items-center justify-between gap-2 border-t border-slate-100">
           <div>
-            <div className="text-xs text-slate-500">Price</div>
-            <div className="text-lg font-extrabold text-emerald-700">
-              Rs. {product.price.toLocaleString()} <span className="text-xs font-medium text-slate-500">/ {product.unit}</span>
+            <div className="text-[10px] uppercase font-bold text-slate-400">Price</div>
+            <div className="text-base font-extrabold text-emerald-700">
+              Rs. {product.price.toLocaleString()} <span className="text-[11px] font-normal text-slate-500">/{product.unit}</span>
             </div>
           </div>
 
           <div className="flex items-center gap-1.5">
             <Link to={`/marketplace/${product.id}`}>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="px-2.5 text-xs">
                 Details
               </Button>
             </Link>
@@ -94,6 +94,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               size="sm"
               onClick={handleAddToCart}
               leftIcon={<ShoppingBag className="w-3.5 h-3.5" />}
+              className="px-2.5"
             />
           </div>
         </div>

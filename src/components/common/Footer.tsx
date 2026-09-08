@@ -41,64 +41,59 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand Info */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold">
+            <Link to="/" className="flex items-center gap-2.5">
+              <div className="w-9 h-9 rounded-xl bg-emerald-700 text-white flex items-center justify-center font-bold shadow-md shadow-emerald-950/30">
                 <Sprout className="w-5 h-5 text-emerald-200" />
               </div>
               <span className="font-extrabold text-xl text-white tracking-tight">
-                Agri<span className="text-emerald-400">Link</span> <span className="text-xs text-emerald-400 font-normal uppercase">Sri Lanka</span>
+                Agri<span className="text-emerald-400">Link</span> <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider block">Sri Lanka</span>
               </span>
             </Link>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Connecting Farmers, Buyers, and Fresh Agricultural Products across Sri Lanka through a modern transparent smart agriculture marketplace.
+              Connecting farmers and buyers through a smarter agricultural platform across Sri Lanka.
             </p>
           </div>
 
-          {/* Quick Links */}
+          {/* Platform Links */}
           <div className="space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">Quick Navigation</h4>
-            <ul className="space-y-2 text-xs">
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Platform</h4>
+            <ul className="space-y-2 text-xs text-slate-400">
               <li>
-                <Link to="/" className="hover:text-emerald-400 transition-colors">Home Page</Link>
+                <Link to="/marketplace" className="hover:text-emerald-400 transition-colors">Marketplace</Link>
               </li>
               <li>
-                <Link to="/marketplace" className="hover:text-emerald-400 transition-colors">Browse Marketplace</Link>
+                <Link to="/about" className="hover:text-emerald-400 transition-colors">About</Link>
               </li>
               <li>
-                <Link to="/about" className="hover:text-emerald-400 transition-colors">About Our Platform</Link>
-              </li>
-              <li>
-                <Link to="/register" className="hover:text-emerald-400 transition-colors">Join as Farmer / Buyer</Link>
+                <Link to="/register" className="hover:text-emerald-400 transition-colors">Join as Farmer</Link>
               </li>
             </ul>
           </div>
 
-          {/* Key Districts */}
+          {/* Account Links */}
           <div className="space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">Key Farming Regions</h4>
-            <ul className="grid grid-cols-2 gap-1.5 text-xs text-slate-400">
-              <li>Nuwara Eliya</li>
-              <li>Jaffna</li>
-              <li>Kurunegala</li>
-              <li>Anuradhapura</li>
-              <li>Badulla</li>
-              <li>Kandy</li>
-              <li>Matara</li>
-              <li>Gampaha</li>
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Account</h4>
+            <ul className="space-y-2 text-xs text-slate-400">
+              <li>
+                <Link to="/login" className="hover:text-emerald-400 transition-colors">Login</Link>
+              </li>
+              <li>
+                <Link to="/register" className="hover:text-emerald-400 transition-colors">Register</Link>
+              </li>
             </ul>
           </div>
 
           {/* Contact Information */}
           <div className="space-y-3">
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider">Contact AgriLink</h4>
-            <ul className="space-y-2 text-xs text-slate-400">
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Contact AgriLink</h4>
+            <ul className="space-y-2.5 text-xs text-slate-400">
               <li className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>AgriLink HQ, Main Street, Colombo 01, Sri Lanka</span>
+                <span>AgriLink HQ, Colombo 01, Sri Lanka</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>+94 11 234 5678 / +94 77 123 4567</span>
+                <span>+94 11 234 5678</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -108,12 +103,12 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Copyright */}
+        {/* Bottom Copyright & Legal */}
         <div className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-          <p>© {new Date().getFullYear()} AgriLink Sri Lanka (Version 1 MVP). All rights reserved.</p>
-          <div className="flex items-center gap-1">
-            <span>Built with passion for Sri Lankan agriculture</span>
-            <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 inline" />
+          <p>© {new Date().getFullYear()} AgriLink Sri Lanka. All rights reserved.</p>
+          <div className="flex items-center gap-6 text-slate-400">
+            <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-emerald-400 transition-colors">Privacy Policy</a>
+            <a href="#" onClick={(e) => e.preventDefault()} className="hover:text-emerald-400 transition-colors">Terms of Service</a>
           </div>
         </div>
       </div>
