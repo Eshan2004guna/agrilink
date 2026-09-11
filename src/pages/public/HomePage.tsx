@@ -44,41 +44,41 @@ export const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="space-y-16 md:space-y-24 pb-16 bg-slate-50/50">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-emerald-50/80 via-stone-50/40 to-white pt-10 pb-16 md:pt-16 md:pb-20 px-4 sm:px-6 lg:px-8 border-b border-slate-200/60">
-        {/* Subtle Decorative Background Blobs */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-emerald-200/30 rounded-full blur-3xl -z-10 pointer-events-none" />
-        <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-amber-100/30 rounded-full blur-3xl -z-10 pointer-events-none" />
+    <div className="space-y-12 md:space-y-20 pb-16 bg-slate-50/50">
+      {/* Rich Dual-Tone Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-950 via-emerald-900 to-slate-950 text-white pt-12 pb-24 lg:pb-32 px-4 sm:px-6 lg:px-8 border-b border-emerald-900/60">
+        {/* Ambient Glowing Background Accents */}
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
           {/* Left Column Text & Actions */}
           <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-200 text-emerald-800 text-xs font-bold tracking-wide uppercase">
-              <Sprout className="w-3.5 h-3.5 text-emerald-700" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-800/80 border border-emerald-700/60 text-emerald-300 text-xs font-bold tracking-wide uppercase backdrop-blur-md">
+              <Sprout className="w-3.5 h-3.5 text-emerald-400" />
               <span>Smart Agriculture Platform</span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
               Connecting{' '}
-              <span className="text-emerald-700">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-amber-300">
                 Farmers to Buyers
               </span>
               .<br className="hidden sm:inline" /> Growing Agriculture Together.
             </h1>
 
-            <p className="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl font-normal leading-relaxed mx-auto lg:mx-0">
+            <p className="text-sm sm:text-base md:text-lg text-slate-300 max-w-2xl font-normal leading-relaxed mx-auto lg:mx-0">
               AgriLink Sri Lanka helps farmers manage farms and sell agricultural products while connecting buyers with fresh, reliable produce.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-1">
               <Button
                 variant="primary"
                 size="lg"
                 onClick={() => navigate('/marketplace')}
                 rightIcon={<ArrowRight className="w-4 h-4" />}
-                className="w-full sm:w-auto shadow-md shadow-emerald-900/15"
+                className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 shadow-lg shadow-emerald-950/50"
               >
                 Explore Marketplace
               </Button>
@@ -86,16 +86,53 @@ export const HomePage: React.FC = () => {
                 variant="outline"
                 size="lg"
                 onClick={() => navigate('/register')}
-                leftIcon={<Tractor className="w-4.5 h-4.5 text-emerald-700" />}
-                className="w-full sm:w-auto bg-white border-slate-300 text-slate-800 hover:bg-emerald-50/60 hover:border-emerald-300"
+                leftIcon={<Tractor className="w-4.5 h-4.5 text-emerald-300" />}
+                className="w-full sm:w-auto border-emerald-400/50 text-white hover:bg-emerald-800/80 hover:border-emerald-300 shadow-sm"
               >
                 Join as a Farmer
               </Button>
             </div>
 
+            {/* Quick Produce Categories Pill Strip */}
+            <div className="pt-2">
+              <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Browse Popular Produce</div>
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+                <button
+                  onClick={() => navigate('/marketplace')}
+                  className="px-3 py-1 rounded-lg bg-emerald-900/70 hover:bg-emerald-800 border border-emerald-700/60 text-emerald-200 text-xs font-medium transition-colors"
+                >
+                  🥦 Vegetables
+                </button>
+                <button
+                  onClick={() => navigate('/marketplace')}
+                  className="px-3 py-1 rounded-lg bg-emerald-900/70 hover:bg-emerald-800 border border-emerald-700/60 text-emerald-200 text-xs font-medium transition-colors"
+                >
+                  🌶️ Ceylon Spices
+                </button>
+                <button
+                  onClick={() => navigate('/marketplace')}
+                  className="px-3 py-1 rounded-lg bg-emerald-900/70 hover:bg-emerald-800 border border-emerald-700/60 text-emerald-200 text-xs font-medium transition-colors"
+                >
+                  🌾 Rice & Grains
+                </button>
+                <button
+                  onClick={() => navigate('/marketplace')}
+                  className="px-3 py-1 rounded-lg bg-emerald-900/70 hover:bg-emerald-800 border border-emerald-700/60 text-emerald-200 text-xs font-medium transition-colors"
+                >
+                  🍌 Fruits
+                </button>
+                <button
+                  onClick={() => navigate('/marketplace')}
+                  className="px-3 py-1 rounded-lg bg-emerald-900/70 hover:bg-emerald-800 border border-emerald-700/60 text-emerald-200 text-xs font-medium transition-colors"
+                >
+                  🍃 Ceylon Teas
+                </button>
+              </div>
+            </div>
+
             {/* Trust Support Line */}
-            <div className="pt-4 flex items-center justify-center lg:justify-start gap-2 text-xs font-semibold text-slate-600">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+            <div className="pt-2 flex items-center justify-center lg:justify-start gap-2 text-xs font-medium text-slate-400">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>Connecting farmers and buyers across Sri Lanka</span>
             </div>
           </div>
@@ -104,23 +141,23 @@ export const HomePage: React.FC = () => {
           <div className="lg:col-span-5 relative flex justify-center">
             <div className="relative w-full max-w-md lg:max-w-none">
               {/* Main Image Frame */}
-              <div className="relative bg-white p-2.5 rounded-3xl border border-slate-200/80 shadow-xl overflow-hidden">
-                <div className="relative h-72 sm:h-80 lg:h-96 w-full rounded-2xl overflow-hidden bg-slate-100">
+              <div className="relative bg-slate-900/80 p-2.5 rounded-3xl border border-slate-800 shadow-2xl overflow-hidden backdrop-blur-md">
+                <div className="relative h-72 sm:h-80 lg:h-96 w-full rounded-2xl overflow-hidden bg-slate-950">
                   <img
                     src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&q=80&w=1000"
                     alt="Fresh Sri Lankan Produce Harvest"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover opacity-90"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
 
                   {/* Image Overlay Tag */}
                   <div className="absolute bottom-4 left-4 right-4 text-white flex items-end justify-between">
                     <div>
-                      <span className="text-[10px] uppercase font-bold text-emerald-300 tracking-wider block">Highland Produce</span>
+                      <span className="text-[10px] uppercase font-bold text-emerald-400 tracking-wider block">Highland Produce</span>
                       <h4 className="text-base font-bold">Nuwara Eliya Carrot Harvest</h4>
-                      <p className="text-xs text-slate-200">Kamal Perera • Nuwara Eliya</p>
+                      <p className="text-xs text-slate-300">Kamal Perera • Nuwara Eliya</p>
                     </div>
-                    <span className="bg-emerald-700 text-white text-xs font-extrabold px-3 py-1.5 rounded-xl shadow-xs">
+                    <span className="bg-emerald-600 text-white text-xs font-extrabold px-3 py-1.5 rounded-xl shadow-md border border-emerald-400/30">
                       Rs. 280 / kg
                     </span>
                   </div>
@@ -128,13 +165,13 @@ export const HomePage: React.FC = () => {
               </div>
 
               {/* Floating Stat Badge */}
-              <div className="absolute -bottom-5 -left-4 sm:-bottom-6 sm:-left-6 bg-white p-3.5 sm:p-4 rounded-2xl border border-slate-200 shadow-lg flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold shrink-0">
-                  <ShieldCheck className="w-5 h-5 text-emerald-700" />
+              <div className="absolute -bottom-5 -left-4 sm:-bottom-6 sm:-left-6 bg-slate-900/95 border border-slate-800 p-3.5 sm:p-4 rounded-2xl shadow-xl flex items-center gap-3 backdrop-blur-md">
+                <div className="w-10 h-10 rounded-xl bg-emerald-900/80 text-emerald-400 flex items-center justify-center font-bold shrink-0 border border-emerald-700/50">
+                  <ShieldCheck className="w-5 h-5 text-emerald-400" />
                 </div>
                 <div>
-                  <div className="text-xs font-bold text-slate-900">Direct Farm Trade</div>
-                  <div className="text-[11px] text-slate-500 font-medium">Verified local suppliers</div>
+                  <div className="text-xs font-bold text-white">Direct Farm Trade</div>
+                  <div className="text-[11px] text-slate-400 font-medium">Verified local suppliers</div>
                 </div>
               </div>
             </div>
@@ -142,12 +179,12 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Trust & Statistics Strip */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-xs p-5 md:p-6 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
+      {/* Trust & Statistics Strip (Overlapping the Hero) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 lg:-mt-16 relative z-20">
+        <div className="bg-white/95 backdrop-blur-lg rounded-2xl border border-slate-200/90 shadow-xl p-5 md:p-6 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
           <div className="flex items-center gap-3 pt-2 sm:pt-0 sm:px-2">
-            <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-              <Users className="w-4.5 h-4.5" />
+            <div className="w-9.5 h-9.5 rounded-xl bg-emerald-100/90 text-emerald-700 flex items-center justify-center shrink-0">
+              <Users className="w-5 h-5" />
             </div>
             <div>
               <div className="text-xs md:text-sm font-bold text-slate-900">Connect Farmers & Buyers</div>
@@ -156,8 +193,8 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3 pt-2 sm:pt-0 sm:px-2">
-            <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-              <Tractor className="w-4.5 h-4.5" />
+            <div className="w-9.5 h-9.5 rounded-xl bg-emerald-100/90 text-emerald-700 flex items-center justify-center shrink-0">
+              <Tractor className="w-5 h-5" />
             </div>
             <div>
               <div className="text-xs md:text-sm font-bold text-slate-900">Manage Farms Easily</div>
@@ -166,8 +203,8 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3 pt-2 sm:pt-0 sm:px-2">
-            <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-              <Leaf className="w-4.5 h-4.5" />
+            <div className="w-9.5 h-9.5 rounded-xl bg-emerald-100/90 text-emerald-700 flex items-center justify-center shrink-0">
+              <Leaf className="w-5 h-5" />
             </div>
             <div>
               <div className="text-xs md:text-sm font-bold text-slate-900">Discover Fresh Products</div>
@@ -176,8 +213,8 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3 pt-2 sm:pt-0 sm:px-2">
-            <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-              <Globe2 className="w-4.5 h-4.5" />
+            <div className="w-9.5 h-9.5 rounded-xl bg-emerald-100/90 text-emerald-700 flex items-center justify-center shrink-0">
+              <Globe2 className="w-5 h-5" />
             </div>
             <div>
               <div className="text-xs md:text-sm font-bold text-slate-900">Simplify Trading</div>
