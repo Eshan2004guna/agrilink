@@ -84,5 +84,21 @@ export const authService = {
     await new Promise((resolve) => setTimeout(resolve, 300));
     if (!currentPass || !newPass) throw new Error('Password cannot be empty');
     if (newPass.length < 6) throw new Error('New password must be at least 6 characters');
+  },
+
+  async resetPassword(email: string, newPass: string): Promise<User> {
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    const users: User[] = getStoredData(STORAGE_KEYS.USERS, []);
+    const index = users.findIndex((u) => u.email.toLowerCase() === email.toLowerCase());
+
+    if (index === -1) {
+      throw new Error('No account registered with this email address.');
+    }
+
+    const updatedUser = { ...users[index] };
+    users[index] = updatedUser;
+    setStoredData(STORAGE_KEYS.USERS, users);
+    setStoredData(STORAGE_KEYS.CURRENT_USER, updatedUser);
+    return updatedUser;
   }
 };

@@ -4,6 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useNotifications } from '../../context/NotificationContext';
 import { Input } from '../../components/common/Input';
 import { Button } from '../../components/common/Button';
+import { ForgotPasswordModal } from '../../components/auth/ForgotPasswordModal';
 import { Sprout, Lock, Mail, Eye, EyeOff, Tractor, UserCheck, Shield } from 'lucide-react';
 
 export const LoginPage: React.FC = () => {
@@ -18,8 +19,21 @@ export const LoginPage: React.FC = () => {
   const [rememberMe, setRememberMe] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isForgotPasswordOpen, setIsForgotPasswordOpen] = useState(false);
 
   const targetPath = location.state?.from?.pathname || location.state?.from;
+
+  const handleSuccessResetLogin = (loggedInUser: any) => {
+    if (targetPath && targetPath !== '/login') {
+      navigate(targetPath);
+    } else if (loggedInUser.role === 'FARMER') {
+      navigate('/farmer/dashboard');
+    } else if (loggedInUser.role === 'ADMIN') {
+      navigate('/admin/dashboard');
+    } else {
+      navigate('/marketplace');
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -168,9 +182,13 @@ export const LoginPage: React.FC = () => {
               />
               <span>Remember me</span>
             </label>
-            <a href="#forgot" onClick={(e) => { e.preventDefault(); showToast('Demo password reset link simulated.', 'info'); }} className="text-emerald-700 hover:underline font-semibold">
+            <button
+              type="button"
+              onClick={() => setIsForgotPasswordOpen(true)}
+              className="text-emerald-700 hover:underline font-semibold"
+            >
               Forgot password?
-            </a>
+            </button>
           </div>
 
           <Button
@@ -192,6 +210,14 @@ export const LoginPage: React.FC = () => {
           </Link>
         </div>
       </div>
+
+      {/* Interactive Forgot Password OTP Modal */}
+      <ForgotPasswordModal
+        isOpen={isForgotPasswordOpen}
+        onClose={() => setIsForgotPasswordOpen(false)}
+        defaultEmail={email}
+        onSuccessLogin={handleSuccessResetLogin}
+      />
     </div>
   );
 };
