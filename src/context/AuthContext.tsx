@@ -25,14 +25,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const initUser = async () => {
       try {
         const stored = await authService.getCurrentUser();
-        if (stored) {
-          setUser(stored);
-        } else {
-          // Default to demo farmer for quick testing experience
-          setUser(INITIAL_USERS[0]);
-        }
+        setUser(stored);
       } catch (err) {
         console.error('Failed to get auth user:', err);
+        setUser(null);
       } finally {
         setIsLoading(false);
       }

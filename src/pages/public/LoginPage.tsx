@@ -19,7 +19,7 @@ export const LoginPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const from = location.state?.from?.pathname || '/';
+  const targetPath = location.state?.from?.pathname || location.state?.from;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,10 +33,15 @@ export const LoginPage: React.FC = () => {
       const user = await login(email, password);
       showToast(`Welcome back, ${user.firstName}!`, 'success');
 
-      if (user.role === 'FARMER') navigate('/farmer/dashboard');
-      else if (user.role === 'ADMIN') navigate('/admin/dashboard');
-      else if (user.role === 'BUYER') navigate('/buyer/dashboard');
-      else navigate(from);
+      if (targetPath && targetPath !== '/login') {
+        navigate(targetPath);
+      } else if (user.role === 'FARMER') {
+        navigate('/farmer/dashboard');
+      } else if (user.role === 'ADMIN') {
+        navigate('/admin/dashboard');
+      } else {
+        navigate('/marketplace');
+      }
     } catch (err: any) {
       setError(err.message || 'Login failed. Please check your credentials.');
     } finally {
@@ -53,10 +58,15 @@ export const LoginPage: React.FC = () => {
       const user = await login(demoEmail, 'password123');
       showToast(`Logged in as ${user.role}: ${user.firstName}`, 'success');
 
-      if (user.role === 'FARMER') navigate('/farmer/dashboard');
-      else if (user.role === 'ADMIN') navigate('/admin/dashboard');
-      else if (user.role === 'BUYER') navigate('/buyer/dashboard');
-      else navigate('/');
+      if (targetPath && targetPath !== '/login') {
+        navigate(targetPath);
+      } else if (user.role === 'FARMER') {
+        navigate('/farmer/dashboard');
+      } else if (user.role === 'ADMIN') {
+        navigate('/admin/dashboard');
+      } else {
+        navigate('/marketplace');
+      }
     } catch (err: any) {
       setError(err.message || 'Quick login failed');
     } finally {
@@ -177,7 +187,7 @@ export const LoginPage: React.FC = () => {
         {/* Register Link */}
         <div className="text-center text-xs text-slate-500 border-t border-slate-100 pt-4">
           Don't have an AgriLink account?{' '}
-          <Link to="/register" className="font-bold text-emerald-700 hover:underline">
+          <Link to="/register" state={{ from: location.state?.from }} className="font-bold text-emerald-700 hover:underline">
             Register as Farmer or Buyer
           </Link>
         </div>

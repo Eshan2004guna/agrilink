@@ -49,6 +49,16 @@ export const Navbar: React.FC = () => {
     return '/';
   };
 
+  const handleNavLinkClick = (path: string, e: React.MouseEvent) => {
+    if (path === '/marketplace') {
+      if (!isAuthenticated || role !== 'BUYER') {
+        e.preventDefault();
+        setIsMobileMenuOpen(false);
+        navigate('/login', { state: { from: { pathname: '/marketplace' } } });
+      }
+    }
+  };
+
   return (
     <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-2xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,6 +86,7 @@ export const Navbar: React.FC = () => {
                 <Link
                   key={link.name}
                   to={link.path}
+                  onClick={(e) => handleNavLinkClick(link.path, e)}
                   className={`text-sm font-semibold transition-colors ${
                     isActive
                       ? 'text-emerald-700 font-bold border-b-2 border-emerald-700 pb-1'
@@ -287,7 +298,10 @@ export const Navbar: React.FC = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(e) => {
+                  setIsMobileMenuOpen(false);
+                  handleNavLinkClick(link.path, e);
+                }}
                 className="px-3 py-2 rounded-lg text-sm font-semibold text-slate-800 hover:bg-slate-100"
               >
                 {link.name}

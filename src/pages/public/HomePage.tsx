@@ -23,11 +23,21 @@ import { Button } from '../../components/common/Button';
 import { ProductCard } from '../../components/marketplace/ProductCard';
 import { Product } from '../../types';
 import { productService } from '../../services/productService';
+import { useAuth } from '../../context/AuthContext';
 
 export const HomePage: React.FC = () => {
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const { isAuthenticated, role } = useAuth();
+
+  const handleMarketplaceAccess = (targetPath: string = '/marketplace') => {
+    if (!isAuthenticated || role !== 'BUYER') {
+      navigate('/login', { state: { from: { pathname: targetPath } } });
+    } else {
+      navigate(targetPath);
+    }
+  };
 
   useEffect(() => {
     const loadFeatured = async () => {
@@ -76,7 +86,7 @@ export const HomePage: React.FC = () => {
               <Button
                 variant="primary"
                 size="lg"
-                onClick={() => navigate('/marketplace')}
+                onClick={() => handleMarketplaceAccess('/marketplace')}
                 rightIcon={<ArrowRight className="w-4 h-4" />}
                 className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 shadow-lg shadow-emerald-950/50"
               >
@@ -98,31 +108,31 @@ export const HomePage: React.FC = () => {
               <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">Browse Popular Produce</div>
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2">
                 <button
-                  onClick={() => navigate('/marketplace')}
+                  onClick={() => handleMarketplaceAccess('/marketplace')}
                   className="px-3 py-1 rounded-lg bg-emerald-900/70 hover:bg-emerald-800 border border-emerald-700/60 text-emerald-200 text-xs font-medium transition-colors"
                 >
                   🥦 Vegetables
                 </button>
                 <button
-                  onClick={() => navigate('/marketplace')}
+                  onClick={() => handleMarketplaceAccess('/marketplace')}
                   className="px-3 py-1 rounded-lg bg-emerald-900/70 hover:bg-emerald-800 border border-emerald-700/60 text-emerald-200 text-xs font-medium transition-colors"
                 >
                   🌶️ Ceylon Spices
                 </button>
                 <button
-                  onClick={() => navigate('/marketplace')}
+                  onClick={() => handleMarketplaceAccess('/marketplace')}
                   className="px-3 py-1 rounded-lg bg-emerald-900/70 hover:bg-emerald-800 border border-emerald-700/60 text-emerald-200 text-xs font-medium transition-colors"
                 >
                   🌾 Rice & Grains
                 </button>
                 <button
-                  onClick={() => navigate('/marketplace')}
+                  onClick={() => handleMarketplaceAccess('/marketplace')}
                   className="px-3 py-1 rounded-lg bg-emerald-900/70 hover:bg-emerald-800 border border-emerald-700/60 text-emerald-200 text-xs font-medium transition-colors"
                 >
                   🍌 Fruits
                 </button>
                 <button
-                  onClick={() => navigate('/marketplace')}
+                  onClick={() => handleMarketplaceAccess('/marketplace')}
                   className="px-3 py-1 rounded-lg bg-emerald-900/70 hover:bg-emerald-800 border border-emerald-700/60 text-emerald-200 text-xs font-medium transition-colors"
                 >
                   🍃 Ceylon Teas
@@ -362,11 +372,13 @@ export const HomePage: React.FC = () => {
               Discover agricultural products available through the AgriLink marketplace.
             </p>
           </div>
-          <Link to="/marketplace">
-            <Button variant="outline" rightIcon={<ArrowRight className="w-4 h-4" />}>
-              View All Products
-            </Button>
-          </Link>
+          <Button
+            variant="outline"
+            onClick={() => handleMarketplaceAccess('/marketplace')}
+            rightIcon={<ArrowRight className="w-4 h-4" />}
+          >
+            View All Products
+          </Button>
         </div>
 
         {isLoading ? (
@@ -460,7 +472,7 @@ export const HomePage: React.FC = () => {
               <div className="pt-2">
                 <Button
                   variant="primary"
-                  onClick={() => navigate('/marketplace')}
+                  onClick={() => handleMarketplaceAccess('/marketplace')}
                   rightIcon={<ArrowRight className="w-4 h-4" />}
                   className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 shadow-md shadow-emerald-950/40"
                 >
@@ -569,7 +581,7 @@ export const HomePage: React.FC = () => {
             <Button
               variant="outline"
               size="lg"
-              onClick={() => navigate('/marketplace')}
+              onClick={() => handleMarketplaceAccess('/marketplace')}
               className="bg-emerald-950/60 border-emerald-700 text-emerald-100 hover:bg-emerald-800 hover:text-white"
             >
               Explore Marketplace

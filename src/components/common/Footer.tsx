@@ -1,8 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Sprout, Mail, Phone, MapPin, Heart, ShieldCheck, Truck, RefreshCw } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 
 export const Footer: React.FC = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated, role } = useAuth();
+
+  const handleMarketplaceClick = (e: React.MouseEvent) => {
+    if (!isAuthenticated || role !== 'BUYER') {
+      e.preventDefault();
+      navigate('/login', { state: { from: { pathname: '/marketplace' } } });
+    }
+  };
   return (
     <footer className="bg-slate-900 text-slate-300 border-t border-slate-800 pt-12 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -59,7 +69,7 @@ export const Footer: React.FC = () => {
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">Platform</h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
-                <Link to="/marketplace" className="hover:text-emerald-400 transition-colors">Marketplace</Link>
+                <Link to="/marketplace" onClick={handleMarketplaceClick} className="hover:text-emerald-400 transition-colors">Marketplace</Link>
               </li>
               <li>
                 <Link to="/about" className="hover:text-emerald-400 transition-colors">About</Link>

@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Product } from '../../types';
 import { MapPin, ShoppingBag, Star, User as UserIcon } from 'lucide-react';
 import { Button } from '../common/Button';
 import { useCart } from '../../context/CartContext';
 import { useNotifications } from '../../context/NotificationContext';
+import { useAuth } from '../../context/AuthContext';
 
 interface ProductCardProps {
   product: Product;
@@ -13,16 +14,34 @@ interface ProductCardProps {
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const { addToCart } = useCart();
   const { showToast } = useNotifications();
+  const navigate = useNavigate();
+  const { isAuthenticated, role } = useAuth();
+
+  const handleProductClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (!isAuthenticated || role !== 'BUYER') {
+      navigate('/login', { state: { from: { pathname: `/marketplace/${product.id}` } } });
+    } else {
+      navigate(`/marketplace/${product.id}`);
+    }
+  };
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    if (!isAuthenticated || role !== 'BUYER') {
+      navigate('/login', { state: { from: { pathname: `/marketplace/${product.id}` } } });
+      return;
+    }
     addToCart(product, 1);
     showToast(`Added ${product.name} to cart!`, 'success');
   };
 
   return (
-    <div className="group bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full">
+    <div
+      onClick={handleProductClick}
+      className="group bg-white rounded-2xl border border-slate-200 shadow-xs hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full cursor-pointer"
+    >
       {/* Image Header */}
       <div className="relative h-48 w-full overflow-hidden bg-slate-100">
         <img
@@ -52,9 +71,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <span className="truncate">{product.district}</span>
           </div>
 
-          <Link to={`/marketplace/${product.id}`} className="block group-hover:text-emerald-700 transition-colors">
-            <h3 className="font-bold text-slate-900 line-clamp-1 text-base leading-snug">{product.name}</h3>
-          </Link>
+          <h3 className="font-bold text-slate-900 line-clamp-1 text-base leading-snug group-hover:text-emerald-700 transition-colors">
+            {product.name}
+          </h3>
 
           <p className="text-xs text-slate-500 line-clamp-2 leading-relaxed h-8">
             {product.description}
@@ -84,11 +103,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
 
           <div className="flex items-center gap-1.5">
-            <Link to={`/marketplace/${product.id}`}>
-              <Button variant="outline" size="sm" className="px-2.5 text-xs">
-                Details
-              </Button>
-            </Link>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleProductClick}
+              className="px-2.5 text-xs"
+            >
+              Details
+            </Button>
             <Button
               variant="primary"
               size="sm"

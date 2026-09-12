@@ -60,8 +60,8 @@ export const AppRoutes: React.FC = () => {
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/marketplace" element={<MarketplacePage />} />
-        <Route path="/marketplace/:id" element={<ProductDetailsPage />} />
+        <Route path="/marketplace" element={<ProtectedRoute allowedRoles={['BUYER']}><MarketplacePage /></ProtectedRoute>} />
+        <Route path="/marketplace/:id" element={<ProtectedRoute allowedRoles={['BUYER']}><ProductDetailsPage /></ProtectedRoute>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/cart" element={<ShoppingCartPage />} />

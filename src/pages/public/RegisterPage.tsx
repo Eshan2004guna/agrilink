@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useNotifications } from '../../context/NotificationContext';
 import { UserRole } from '../../types';
@@ -11,6 +11,7 @@ export const RegisterPage: React.FC = () => {
   const { register } = useAuth();
   const { showToast } = useNotifications();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [step, setStep] = useState<1 | 2>(1);
   const [selectedRole, setSelectedRole] = useState<UserRole>('FARMER');
@@ -76,9 +77,16 @@ export const RegisterPage: React.FC = () => {
         password: formData.password,
       });
 
+      const targetPath = location.state?.from?.pathname || location.state?.from;
       showToast(`Account created successfully as ${selectedRole}!`, 'success');
-      if (selectedRole === 'FARMER') navigate('/farmer/dashboard');
-      else navigate('/buyer/dashboard');
+      
+      if (targetPath && targetPath !== '/register' && targetPath !== '/login') {
+        navigate(targetPath);
+      } else if (selectedRole === 'FARMER') {
+        navigate('/farmer/dashboard');
+      } else {
+        navigate('/marketplace');
+      }
     } catch (err: any) {
       setErrors({ form: err.message || 'Registration failed' });
     } finally {
