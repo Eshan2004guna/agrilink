@@ -573,18 +573,20 @@ export const HomePage: React.FC = () => {
             <Button
               variant="primary"
               size="lg"
-              onClick={() => navigate('/register')}
-              className="bg-emerald-600 hover:bg-emerald-500 text-white shadow-md"
+              onClick={() => handleMarketplaceAccess('/marketplace')}
+              rightIcon={<ArrowRight className="w-4 h-4" />}
+              className="bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-950/50"
             >
-              Join as a Farmer
+              Explore Marketplace
             </Button>
             <Button
               variant="outline"
               size="lg"
-              onClick={() => handleMarketplaceAccess('/marketplace')}
-              className="bg-emerald-950/60 border-emerald-700 text-emerald-100 hover:bg-emerald-800 hover:text-white"
+              onClick={() => navigate('/register')}
+              leftIcon={<Tractor className="w-4.5 h-4.5 text-emerald-300" />}
+              className="border-emerald-400/50 text-white hover:bg-emerald-800/80 hover:border-emerald-300 shadow-sm"
             >
-              Explore Marketplace
+              Join as a Farmer
             </Button>
           </div>
         </div>
