@@ -12,15 +12,12 @@ import {
   LayoutDashboard,
   Menu,
   X,
-  ChevronDown,
-  Shield,
-  Tractor,
-  UserCheck
+  ChevronDown
 } from 'lucide-react';
 import { UserRole } from '../../types';
 
 export const Navbar: React.FC = () => {
-  const { user, role, isAuthenticated, logout, switchRoleForDemo } = useAuth();
+  const { user, role, isAuthenticated, logout } = useAuth();
   const { totalItems } = useCart();
   const { unreadCount } = useNotifications();
   const navigate = useNavigate();
@@ -28,7 +25,6 @@ export const Navbar: React.FC = () => {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const [isRoleDropdownOpen, setIsRoleDropdownOpen] = useState(false);
 
   const handleLogout = async () => {
     await logout();
@@ -99,71 +95,8 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* Right Controls: Quick Role Switcher + Cart + Notifications + User Menu */}
+          {/* Right Controls: Cart + Notifications + User Menu */}
           <div className="hidden md:flex items-center gap-3">
-            {/* Quick Demo Role Switcher Badge */}
-            <div className="relative">
-              <button
-                onClick={() => setIsRoleDropdownOpen(!isRoleDropdownOpen)}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-full text-xs font-semibold text-slate-700 border border-slate-200 transition-colors"
-                title="Switch role for demo testing"
-              >
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Role: <strong>{role || 'GUEST'}</strong></span>
-                <ChevronDown className="w-3.5 h-3.5" />
-              </button>
-
-              {isRoleDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-200 py-1 z-50 text-xs font-medium">
-                  <div className="px-3 py-1.5 text-[10px] font-bold uppercase text-slate-400 border-b border-slate-100">
-                    Switch Demo User Role
-                  </div>
-                  <button
-                    onClick={() => {
-                      switchRoleForDemo('FARMER');
-                      setIsRoleDropdownOpen(false);
-                      navigate('/farmer/dashboard');
-                    }}
-                    className="w-full text-left px-3 py-2 hover:bg-emerald-50 hover:text-emerald-800 flex items-center gap-2"
-                  >
-                    <Tractor className="w-4 h-4 text-emerald-600" />
-                    <span>Farmer (Kamal)</span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      switchRoleForDemo('BUYER');
-                      setIsRoleDropdownOpen(false);
-                      navigate('/buyer/dashboard');
-                    }}
-                    className="w-full text-left px-3 py-2 hover:bg-emerald-50 hover:text-emerald-800 flex items-center gap-2"
-                  >
-                    <UserCheck className="w-4 h-4 text-blue-600" />
-                    <span>Buyer (Dilani)</span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      switchRoleForDemo('ADMIN');
-                      setIsRoleDropdownOpen(false);
-                      navigate('/admin/dashboard');
-                    }}
-                    className="w-full text-left px-3 py-2 hover:bg-emerald-50 hover:text-emerald-800 flex items-center gap-2"
-                  >
-                    <Shield className="w-4 h-4 text-purple-600" />
-                    <span>Admin (Anura)</span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      switchRoleForDemo('GUEST');
-                      setIsRoleDropdownOpen(false);
-                      navigate('/');
-                    }}
-                    className="w-full text-left px-3 py-2 hover:bg-slate-100 text-slate-600"
-                  >
-                    <span>Guest Mode</span>
-                  </button>
-                </div>
-              )}
-            </div>
 
             {/* Shopping Cart Button */}
             <Link
@@ -307,43 +240,6 @@ export const Navbar: React.FC = () => {
                 {link.name}
               </Link>
             ))}
-          </div>
-
-          {/* Role switcher inside mobile menu */}
-          <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 space-y-2 text-xs">
-            <span className="font-bold text-slate-500 uppercase tracking-wider block">Switch Demo Role</span>
-            <div className="grid grid-cols-3 gap-2">
-              <button
-                onClick={() => {
-                  switchRoleForDemo('FARMER');
-                  setIsMobileMenuOpen(false);
-                  navigate('/farmer/dashboard');
-                }}
-                className="py-1.5 bg-emerald-700 text-white font-bold rounded-lg text-center"
-              >
-                Farmer
-              </button>
-              <button
-                onClick={() => {
-                  switchRoleForDemo('BUYER');
-                  setIsMobileMenuOpen(false);
-                  navigate('/buyer/dashboard');
-                }}
-                className="py-1.5 bg-blue-600 text-white font-bold rounded-lg text-center"
-              >
-                Buyer
-              </button>
-              <button
-                onClick={() => {
-                  switchRoleForDemo('ADMIN');
-                  setIsMobileMenuOpen(false);
-                  navigate('/admin/dashboard');
-                }}
-                className="py-1.5 bg-purple-600 text-white font-bold rounded-lg text-center"
-              >
-                Admin
-              </button>
-            </div>
           </div>
 
           {isAuthenticated && user ? (
