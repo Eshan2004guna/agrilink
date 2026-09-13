@@ -12,6 +12,7 @@ import { HomePage } from '../pages/public/HomePage';
 import { AboutPage } from '../pages/public/AboutPage';
 import { MarketplacePage } from '../pages/public/MarketplacePage';
 import { ProductDetailsPage } from '../pages/public/ProductDetailsPage';
+import { MarketPricesPage } from '../pages/public/MarketPricesPage';
 import { LoginPage } from '../pages/public/LoginPage';
 import { RegisterPage } from '../pages/public/RegisterPage';
 
@@ -60,6 +61,7 @@ export const AppRoutes: React.FC = () => {
       <Route element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/market-prices" element={<MarketPricesPage />} />
         <Route path="/marketplace" element={<ProtectedRoute allowedRoles={['BUYER']}><MarketplacePage /></ProtectedRoute>} />
         <Route path="/marketplace/:id" element={<ProtectedRoute allowedRoles={['BUYER']}><ProductDetailsPage /></ProtectedRoute>} />
         <Route path="/login" element={<LoginPage />} />

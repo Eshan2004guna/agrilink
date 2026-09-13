@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import { useNotifications } from '../../context/NotificationContext';
+import { MarketTicker } from './MarketTicker';
 import {
   Sprout,
   ShoppingBag,
@@ -35,6 +36,7 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Marketplace', path: '/marketplace' },
+    { name: 'Market Rates', path: '/market-prices' },
     { name: 'About', path: '/about' },
   ];
 
@@ -56,7 +58,9 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-2xs">
+    <>
+      <MarketTicker />
+      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-2xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Brand Logo */}
@@ -286,5 +290,6 @@ export const Navbar: React.FC = () => {
         </div>
       )}
     </header>
+    </>
   );
 };

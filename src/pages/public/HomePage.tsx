@@ -234,6 +234,32 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
+      {/* Live Market Price Index Banner */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-gradient-to-r from-slate-900 via-emerald-950 to-slate-900 p-6 sm:p-8 rounded-3xl text-white flex flex-col md:flex-row items-center justify-between gap-6 border border-emerald-900/80 shadow-lg">
+          <div className="space-y-2 text-center md:text-left">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-900/80 text-emerald-300 text-xs font-bold uppercase border border-emerald-700">
+              <BarChart3 className="w-3.5 h-3.5 text-emerald-400" /> Live Daily Index
+            </div>
+            <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+              Sri Lanka Dedicated Economic Centre Rates
+            </h3>
+            <p className="text-xs text-slate-300 max-w-xl">
+              Track daily wholesale prices at Dambulla, Keppetipola, Jaffna & Peliyagoda hubs. Save 15-25% buying direct from farmers.
+            </p>
+          </div>
+          <Link to="/market-prices">
+            <Button
+              variant="primary"
+              rightIcon={<ArrowRight className="w-4 h-4" />}
+              className="bg-emerald-600 hover:bg-emerald-500 shadow-md shrink-0 whitespace-nowrap"
+            >
+              View Live Market Rates
+            </Button>
+          </Link>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <div className="text-center max-w-2xl mx-auto space-y-2.5">
