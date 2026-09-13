@@ -66,7 +66,7 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
       setGeneratedOtp(code);
       setResendTimer(30);
       setStep(2);
-      showToast(`Verification code sent to ${targetEmail}! OTP Code: ${code}`, 'success');
+      showToast(`A 6-digit verification code has been sent to ${targetEmail}.`, 'success');
     } catch (err: any) {
       setError(err.message || 'Failed to send verification email.');
     } finally {
@@ -114,7 +114,7 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
     }
 
     if (enteredOtp !== generatedOtp) {
-      setError(`Invalid verification code. Use demo code: ${generatedOtp}`);
+      setError('Invalid verification code. Please check your email inbox and try again.');
       return;
     }
 
@@ -237,15 +237,14 @@ export const ForgotPasswordModal: React.FC<ForgotPasswordModalProps> = ({
               </p>
             </div>
 
-            {/* Simulated OTP Code Alert for testing */}
-            <div className="bg-emerald-50 border border-emerald-200 p-3 rounded-xl text-center space-y-1">
-              <span className="text-[10px] uppercase font-extrabold tracking-wider text-emerald-800 block">
+            {/* Verification Status Banner */}
+            <div className="bg-emerald-50/80 border border-emerald-200 p-3.5 rounded-xl text-center space-y-1">
+              <span className="text-xs font-bold text-emerald-900 block">
                 Verification Code Sent
               </span>
-              <div className="text-lg font-black tracking-widest text-emerald-900 font-mono">
-                {generatedOtp}
-              </div>
-              <p className="text-[11px] text-emerald-700">Enter this 6-digit code below to proceed.</p>
+              <p className="text-[11px] text-emerald-700">
+                Please check your email inbox and enter the 6-digit code below.
+              </p>
             </div>
 
             {/* 6 Digit OTP Inputs */}
